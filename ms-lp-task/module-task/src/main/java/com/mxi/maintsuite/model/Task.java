@@ -42,12 +42,17 @@ public class Task implements Serializable {
     @Column(name = "WRPK_ID")
     private Integer workPackageId;
 
+    @ApiModelProperty(value = "workPackage", required = false)
+    @Transient
+    private WorkPackage workPackage;
+
     @Transient
     private List<Tool> toolList;
 
 
     public Task() {
         this.toolList = new ArrayList<Tool>();
+        this.workPackage = new WorkPackage();
 
     }
 
@@ -83,12 +88,21 @@ public class Task implements Serializable {
         this.toolList = toolList;
     }
 
+    public WorkPackage getWorkPackage() {
+        return workPackage;
+    }
+
+    public void setWorkPackage(WorkPackage workPackage) {
+        this.workPackage = workPackage;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", workPackageId=" + workPackageId +
+                ", workPackage=" + workPackage +
                 ", toolList=" + toolList +
                 '}';
     }

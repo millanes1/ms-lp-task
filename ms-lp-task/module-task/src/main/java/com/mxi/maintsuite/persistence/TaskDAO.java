@@ -12,14 +12,14 @@ import java.util.List;
  */
 
 @ApplicationScoped
-public class TaskServiceDAO {
+public class TaskDAO {
 
     @Inject
     PersistenceHelper helper;
 
     public Task get(Integer id) {
 
-        return null;
+        return helper.getEntityManager().createNamedQuery("Task.getById", Task.class).setParameter("id", id).getSingleResult();
     }
 
 
@@ -28,5 +28,8 @@ public class TaskServiceDAO {
         return taskList;
     }
 
+    public List<Task> findByWorkPackage(Integer workPackageId) {
 
+        return helper.getEntityManager().createNamedQuery("Task.findByWorkPackageId", Task.class).setParameter("workPackageId", workPackageId).getResultList();
+    }
 }
