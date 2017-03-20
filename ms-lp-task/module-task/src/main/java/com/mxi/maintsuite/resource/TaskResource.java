@@ -1,6 +1,8 @@
-package com.mxi.maintsuite;
+package com.mxi.maintsuite.resource;
 
 
+import com.mxi.maintsuite.PersistenceHelper;
+import com.mxi.maintsuite.persistence.TaskServiceDAO;
 import com.mxi.maintsuite.model.Task;
 import io.swagger.annotations.*;
 
@@ -19,6 +21,9 @@ public class TaskResource {
     @Inject
     PersistenceHelper helper;
 
+    @Inject
+    TaskServiceDAO taskServiceDAO;
+
     private static final int RESPONSE_CODE_OK = 200;
     private static final int RESPONSE_CODE_CREATED = 201;
     private static final int RESPONSE_CODE_NOCONTENT = 204;
@@ -33,7 +38,7 @@ public class TaskResource {
             responseContainer = "List")
     public Response get() {
 
-        final List<Task> taskList = helper.getEntityManager().createNamedQuery("Task.findAll", Task.class).getResultList();
+        final List<Task> taskList = taskServiceDAO.findAll();
         return Response.status(Response.Status.OK).entity(taskList).build();
     }
 

@@ -1,6 +1,7 @@
-package com.mxi.maintsuite;
+package com.mxi.maintsuite.resource;
 
 
+import com.mxi.maintsuite.PersistenceHelper;
 import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.model.WorkPackage;
 import io.swagger.annotations.Api;
