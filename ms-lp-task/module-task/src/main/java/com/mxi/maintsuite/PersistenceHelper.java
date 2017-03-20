@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.persistence;
+package com.mxi.maintsuite;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;

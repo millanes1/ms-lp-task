@@ -1,15 +1,8 @@
-#Development
-project:
-  stage: development
-
-logger:
-  level: DEBUG
-
 swarm:
-ds:
-  name: TaskDS
-  username: postgres
-  password: test1234
-  connection:
-    url: jdbc:postgresql://postgresdb:5432/postgres
+  ds:
+    name: DemoDS
+    username: postgres
+    password: test1234
+    connection:
+      url: jdbc:postgresql://postgresdb:5432/postgres
 
