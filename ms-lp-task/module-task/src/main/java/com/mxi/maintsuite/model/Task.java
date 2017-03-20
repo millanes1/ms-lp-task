@@ -3,39 +3,47 @@ package com.mxi.maintsuite.model;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 
 @Entity
 @Table(name = "REST_DB_TASKS")
 @NamedQueries({@NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t"),
         @NamedQuery(name = "Task.getById", query = "SELECT t FROM Task t WHERE t.id=:id"),
-        @NamedQuery(name = "Task.findByWorpackageId", query = "SELECT t FROM Task t WHERE t.workpackageId=:id")
+        @NamedQuery(name = "Task.findByWorkPackageId", query = "SELECT t FROM Task t WHERE t.workPackageId=:id")
 
 })
 @JsonRootName(value = "Task")
+@ApiModel(value = "Task", description = "Information associated to a Task")
 @XmlRootElement
 public class Task implements Serializable {
     @Transient
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     @Column(name = "TASK_ID")
+    @ApiModelProperty(value = "id", required = true)
     private Integer id;
 
+    @NotNull
+    @ApiModelProperty(value = "name", required = true)
     @Column(name = "TASK_NAME")
     private String name;
 
-
+    @ApiModelProperty(value = "workPackageId", required = false)
     @Column(name = "WRPK_ID")
-    private Integer workpackageId;
+    private Integer workPackageId;
 
 
     public Task() {
 
     }
-
 
     public Integer getId() {
         return id;
@@ -53,12 +61,12 @@ public class Task implements Serializable {
         this.name = name;
     }
 
-    public Integer getWorkpackageId() {
-        return workpackageId;
+    public Integer getWorkPackageId() {
+        return workPackageId;
     }
 
-    public void setWorkpackageId(Integer workpackageId) {
-        this.workpackageId = workpackageId;
+    public void setWorkPackageId(Integer workPackageId) {
+        this.workPackageId = workPackageId;
     }
 
     @Override
@@ -66,7 +74,7 @@ public class Task implements Serializable {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", workpackageId=" + workpackageId +
+                ", workPackageId=" + workPackageId +
                 '}';
     }
 }
