@@ -1,4 +1,4 @@
-package com.mxi.maintsuite;
+package com.mxi.maintsuite.filter;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
