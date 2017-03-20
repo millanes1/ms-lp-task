@@ -1,26 +1,6 @@
-FROM openjdk:8-jdk-alpine
+FROM java:openjdk-8-jdk
 
-ARG DEV_UID
-ARG DEV_HOME
-
-ENV HOME $DEV_HOME
-ENV MAVEN_HOME /opt/maven
-ENV MAVEN_VERSION 3.3.9
-
-ENV PATH $PATH:$MAVEN_HOME/apache-maven-${MAVEN_VERSION}/bin
-
-RUN mkdir -p $MAVEN_HOME && \
-    mkdir -p $HOME
-
-WORKDIR $MAVEN_HOME
-
-RUN wget http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.zip
-RUN unzip apache-maven-3.3.9-bin.zip
-
-VOLUME $HOME
-
-WORKDIR $HOME
+ADD module-task/target/module-task-swarm.jar /opt/module-task-swarm.jar
 
 EXPOSE 8080
-
-CMD (mvn package && java -jar target/module-task-swarm.jar)
+ENTRYPOINT ["java", "-jar", "/opt/module-task-swarm.jar"]

@@ -4,12 +4,25 @@ services:
     module-task:
       build:
         context: .
-        dockerfile: module-task/dev/Dockerfile.dev
+        dockerfile: ${MS_TASK_HOME}/dev/Dockerfile.dev
+        args:
+          DEV_HOME : ${MS_TASK_HOME}
       ports:
         - "8080:8080"
       external_links:
         - postgresdb:postgres
+      networks:
+        - default
+        - postgresdb_default
+
+      volumes:
+        - ../module-task:${MS_TASK_HOME}
+
 networks:
-  default:
-    external:
-      name: postgresdb_default
+    default:
+    postgresdb_default:
+      external: true
+
+
+volumes:
+  dbdata:

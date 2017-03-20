@@ -1,0 +1,1 @@
+DROP TABLE public.REST_DB_TASKS;

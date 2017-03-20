@@ -13,21 +13,3 @@ ds:
   connection:
     url: jdbc:postgresql://postgresdb:5432/postgres
 
-
----
-
-#Production
-
-project:
-  stage: production
-
-logger:
-  level: INFO
-
-swarm:
-ds:
-  name: TaskDS
-  username: postgres
-  password: test1234
-  connection:
-    url: jdbc:postgresql://postgresdb:5432/postgres
