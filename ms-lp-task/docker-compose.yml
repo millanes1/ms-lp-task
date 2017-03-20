@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+    module-task:
+      build:
+        context: .
+        dockerfile: module-task/dev/Dockerfile.dev
+      ports:
+        - "8080:8080"
+      external_links:
+        - postgresdb:postgres
+networks:
+  default:
+    external:
+      name: postgresdb_default

@@ -1,0 +1,18 @@
+FROM openjdk:8-jdk-alpine
+
+ENV HOME /home/ms-lp-task
+
+# Create our various directories and users
+RUN mkdir -p $HOME/logs
+
+RUN addgroup -S ms-lp-task && adduser -S -g ms-lp-task ms-lp-task
+USER ms-lp-task
+
+WORKDIR $HOME
+
+#Add the generated fat jar to the home directory
+ADD module-task/target/module-task-swarm.jar $HOME
+
+EXPOSE 8080
+
+CMD (java -jar module-task-swarm.jar)
