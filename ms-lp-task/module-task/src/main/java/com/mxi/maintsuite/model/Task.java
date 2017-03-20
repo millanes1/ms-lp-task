@@ -6,6 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -40,8 +42,12 @@ public class Task implements Serializable {
     @Column(name = "WRPK_ID")
     private Integer workPackageId;
 
+    @Transient
+    private List<Tool> toolList;
+
 
     public Task() {
+        this.toolList = new ArrayList<Tool>();
 
     }
 
@@ -69,12 +75,21 @@ public class Task implements Serializable {
         this.workPackageId = workPackageId;
     }
 
+    public List<Tool> getToolList() {
+        return toolList;
+    }
+
+    public void setToolList(List<Tool> toolList) {
+        this.toolList = toolList;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", workPackageId=" + workPackageId +
+                ", toolList=" + toolList +
                 '}';
     }
 }
