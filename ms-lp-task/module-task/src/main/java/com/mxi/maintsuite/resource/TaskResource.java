@@ -1,18 +1,14 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.PersistenceHelper;
-import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.model.Task;
-import com.mxi.maintsuite.persistence.TaskDAO;
-import com.mxi.maintsuite.persistence.WorkPackageDAO;
+import com.mxi.maintsuite.services.TaskService;
 import io.swagger.annotations.*;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 
 @Path("/tasks")
@@ -20,14 +16,11 @@ import java.util.List;
 @Produces({"application/json", "application/xml"})
 public class TaskResource {
 
-    @Inject
-    PersistenceHelper helper;
 
-    @Inject
-    TaskDAO taskDAO;
+    @EJB
+    private
+    TaskService taskService;
 
-    @Inject
-    WorkPackageDAO workPackageDAO;
 
     private static final int RESPONSE_CODE_OK = 200;
     private static final int RESPONSE_CODE_CREATED = 201;
@@ -43,11 +36,8 @@ public class TaskResource {
             responseContainer = "List")
     public Response get() {
 
-        final List<Task> taskList = taskDAO.findAll();
-        for (Task item : taskList) {
-            item.setWorkPackage(this.find(item.getWorkPackageId()));
-        }
-        return Response.status(Response.Status.OK).entity(taskList).build();
+
+        return Response.status(Response.Status.OK).entity(taskService.findAll()).build();
     }
 
     @GET
@@ -64,11 +54,8 @@ public class TaskResource {
                     response = Task.class))
 
     public Response get(@ApiParam(value = "Identificator Task", required = true) @PathParam("id") int id) {
-        final Task task = helper.getEntityManager().createNamedQuery("Task.getById", Task.class).setParameter("id", id).getSingleResult();
 
-        task.setWorkPackage(this.find(task.getWorkPackageId()));
-
-        return Response.status(Response.Status.OK).entity(task).build();
+        return Response.status(Response.Status.OK).entity(taskService.get(id)).build();
 
     }
 
@@ -83,18 +70,9 @@ public class TaskResource {
             responseContainer = "List"
     )
     public Response findByWorkPackageId(@ApiParam(value = "Identificator WorkPackage", required = true) @PathParam("id") int id) {
-        final List<Task> taskList = taskDAO.findByWorkPackage(id);
-        for (Task item : taskList) {
-            item.setWorkPackage(this.find(item.getWorkPackageId()));
-        }
-
-        return Response.status(Response.Status.OK).entity(taskList).build();
-
-    }
 
 
-    private WorkPackage find(Integer workPackageId) {
-        return (workPackageDAO.get(workPackageId));
+        return Response.status(Response.Status.OK).entity(taskService.findByWorkPackage(id)).build();
 
     }
 

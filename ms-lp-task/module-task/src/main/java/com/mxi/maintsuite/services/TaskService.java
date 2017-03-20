@@ -1,6 +1,7 @@
 package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.model.Task;
+import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.persistence.TaskDAO;
 
 import javax.ejb.EJB;
@@ -24,22 +25,39 @@ public class TaskService {
 
 
     public List<Task> findAll() {
-        return taskDAO.findAll();
+        List<Task> taskList = taskDAO.findAll();
+        this.complete(taskList);
+
+        return taskList;
     }
 
 
     public Task get(Integer id) {
-
+        Task task = taskDAO.get(id);
+        if (task != null && task.getWorkPackageId() != null) {
+            task.setWorkPackage(workPackageService.get(task.getWorkPackageId()));
+        }
         return taskDAO.get(id);
+
 
     }
 
 
     public List<Task> findByWorkPackage(Integer workPackageId) {
-        return taskDAO.findByWorkPackage(workPackageId);
+        List<Task> taskList = taskDAO.findByWorkPackage(workPackageId);
+        this.complete(taskList);
+
+        return taskList;
 
 
     }
 
-
+    private void complete(List<Task> taskList) {
+        for (Task item : taskList) {
+            if (item != null && item.getWorkPackageId() != null) {
+                item.setWorkPackage(workPackageService.get(item.getWorkPackageId()));
+            }
+        }
+    }
 }
+
