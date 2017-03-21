@@ -1,8 +1,10 @@
 package com.mxi.maintsuite.resource;
 
 
+import com.mxi.maintsuite.model.Error;
 import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.services.TaskService;
+import com.mxi.maintsuite.exception.NotFoundException;
 import io.swagger.annotations.*;
 
 import javax.ejb.EJB;
@@ -34,7 +36,7 @@ public class TaskResource {
             notes = "Returns task as list",
             response = Task.class,
             responseContainer = "List")
-    public Response get() {
+    public Response get() throws NotFoundException {
 
 
         return Response.status(Response.Status.OK).entity(taskService.findAll()).build();
@@ -47,13 +49,17 @@ public class TaskResource {
     @ApiOperation(value = "Get Task By Id",
             notes = "Returns task as Object",
             response = Task.class)
-    @ApiResponses(
+    @ApiResponses(value = {
             @ApiResponse(
                     code = RESPONSE_CODE_OK,
                     message = "Task by Id",
-                    response = Task.class))
+                    response = Task.class
+                    , responseContainer = "List"
+            ),
+            @ApiResponse(code = 200, message = "Unexpected error", response = Error.class)}
+    )
 
-    public Response get(@ApiParam(value = "Identificator Task", required = true) @PathParam("id") int id) {
+    public Response get(@ApiParam(value = "Identificator Task", required = true) @PathParam("id") int id) throws NotFoundException {
 
         return Response.status(Response.Status.OK).entity(taskService.get(id)).build();
 
@@ -69,7 +75,7 @@ public class TaskResource {
             response = Task.class,
             responseContainer = "List"
     )
-    public Response findByWorkPackageId(@ApiParam(value = "Identificator WorkPackage", required = true) @PathParam("id") int id) {
+    public Response findByWorkPackageId(@ApiParam(value = "Identificator WorkPackage", required = true) @PathParam("id") int id) throws NotFoundException {
 
 
         return Response.status(Response.Status.OK).entity(taskService.findByWorkPackage(id)).build();

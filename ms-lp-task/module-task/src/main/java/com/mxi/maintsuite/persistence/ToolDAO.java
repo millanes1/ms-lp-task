@@ -31,6 +31,6 @@ public class ToolDAO {
 
     public List<Tool> findByTask(Integer taskId) {
 
-        return helper.getEntityManager().createNamedQuery("Tool.findByTaskId", Tool.class).getResultList();
+        return helper.getEntityManager().createNamedQuery("Tool.findByTaskId", Tool.class).setParameter("taskId", taskId).getResultList();
     }
 }

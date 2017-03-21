@@ -1,5 +1,6 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.exception.NotFoundException;
 import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.persistence.TaskDAO;
@@ -22,9 +23,10 @@ public class TaskService {
     private TaskDAO taskDAO;
     @EJB
     private WorkPackageService workPackageService;
+    @EJB
+    private ToolService toolService;
 
-
-    public List<Task> findAll() {
+    public List<Task> findAll() throws NotFoundException {
         List<Task> taskList = taskDAO.findAll();
         this.complete(taskList);
 
@@ -32,9 +34,10 @@ public class TaskService {
     }
 
 
-    public Task get(Integer id) {
+    public Task get(Integer id) throws NotFoundException {
         Task task = taskDAO.get(id);
         if (task != null && task.getWorkPackageId() != null) {
+            task.setToolList(toolService.findByTask(task.getId()));
             task.setWorkPackage(workPackageService.get(task.getWorkPackageId()));
         }
         return taskDAO.get(id);
@@ -43,7 +46,7 @@ public class TaskService {
     }
 
 
-    public List<Task> findByWorkPackage(Integer workPackageId) {
+    public List<Task> findByWorkPackage(Integer workPackageId) throws NotFoundException {
         List<Task> taskList = taskDAO.findByWorkPackage(workPackageId);
         this.complete(taskList);
 
@@ -52,8 +55,10 @@ public class TaskService {
 
     }
 
-    private void complete(List<Task> taskList) {
+    private void complete(List<Task> taskList) throws NotFoundException {
         for (Task item : taskList) {
+            item.setToolList(toolService.findByTask(item.getId()));
+            ;
             if (item != null && item.getWorkPackageId() != null) {
                 item.setWorkPackage(workPackageService.get(item.getWorkPackageId()));
             }

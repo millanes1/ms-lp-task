@@ -29,7 +29,7 @@ import java.io.Serializable;
 @NamedQueries({
         @NamedQuery(name = "Tool.findAll", query = "SELECT t FROM Tool t"),
         @NamedQuery(name = "Tool.getById", query = "SELECT t FROM Tool t WHERE t.id=:id"),
-        @NamedQuery(name = "Tool.findByTaskId", query = "SELECT t FROM Tool t WHERE t.taskId=:id")
+        @NamedQuery(name = "Tool.findByTaskId", query = "SELECT t FROM Tool t WHERE t.taskId=:taskId")
 })
 @JsonRootName(value = "Tool")
 @ApiModel(value = "Tool", description = "Information associated to a Tool")
