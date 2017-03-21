@@ -1,25 +1,25 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.PersistenceHelper;
 import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.model.Tool;
+import com.mxi.maintsuite.services.ToolService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-import javax.inject.Inject;
+import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.List;
 
 
 @Path("/tools")
 @Api(value = "/tools", description = "Get tools information", tags = "tools")
 public class ToolResource {
 
-    @Inject
-    PersistenceHelper helper;
+    @EJB
+    private
+    ToolService toolService;
 
 
     @GET
@@ -31,8 +31,8 @@ public class ToolResource {
             responseContainer = "List")
     public Response get() {
 
-        final List<Tool> toolList = helper.getEntityManager().createNamedQuery("Tool.findAll", Tool.class).getResultList();
-        return Response.status(Response.Status.OK).entity(toolList).build();
+
+        return Response.status(Response.Status.OK).entity(toolService.findAll()).build();
     }
 
     @GET
@@ -43,8 +43,7 @@ public class ToolResource {
             notes = "Returns tool as Object",
             response = Tool.class)
     public Response get(@PathParam("id") int id) {
-        final Tool tool = helper.getEntityManager().createNamedQuery("Tool.getById", Tool.class).setParameter("id", id).getSingleResult();
-        return Response.status(Response.Status.OK).entity(tool).build();
+        return Response.status(Response.Status.OK).entity(toolService.get(id)).build();
     }
 
 
@@ -57,8 +56,7 @@ public class ToolResource {
             response = Task.class,
             responseContainer = "List")
     public Response findByTaskId(@PathParam("id") int id) {
-        final List<Tool> toolList = helper.getEntityManager().createNamedQuery("Tool.findByTaskId", Tool.class).getResultList();
-        return Response.status(Response.Status.OK).entity(toolList).build();
+        return Response.status(Response.Status.OK).entity(toolService.findByTask(id)).build();
 
 
     }
