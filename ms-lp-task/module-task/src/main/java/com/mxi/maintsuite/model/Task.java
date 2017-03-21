@@ -38,7 +38,7 @@ public class Task implements Serializable {
     @Column(name = "TASK_NAME")
     private String name;
 
-    @ApiModelProperty(value = "workPackageId", required = false)
+    @ApiModelProperty(value = "workPackageId", required = false, hidden = true)
     @Column(name = "WRPK_ID")
     private Integer workPackageId;
 
