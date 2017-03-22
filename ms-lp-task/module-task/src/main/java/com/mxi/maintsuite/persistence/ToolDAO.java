@@ -18,7 +18,7 @@ public class ToolDAO {
     @Inject
     PersistenceHelper helper;
 
-    public Tool get(Integer id) {
+    public Tool get(Long id) {
 
         return helper.getEntityManager().createNamedQuery("Tool.getById", Tool.class).setParameter("id", id).getSingleResult();
     }
@@ -29,7 +29,7 @@ public class ToolDAO {
 
     }
 
-    public List<Tool> findByTask(Integer taskId) {
+    public List<Tool> findByTask(Long taskId) {
 
         return helper.getEntityManager().createNamedQuery("Tool.findByTaskId", Tool.class).setParameter("taskId", taskId).getResultList();
     }

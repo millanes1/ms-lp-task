@@ -38,11 +38,6 @@ public class TaskService {
     public Task get(Long id) throws NotFoundException {
         Task task = taskDAO.get(id);
         this.complete(task);
-        /*System.out.println("TASK WP BARCODE :"+task.getBarcodeWP());
-        if (task != null && task.getBarcodeWP() != null) {
-            //  task.setToolList(toolService.findByTask(task.getId()));
-            task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
-        }*/
         return task;
     }
 
@@ -72,7 +67,7 @@ public class TaskService {
     private void complete(Task task) throws NotFoundException {
 
         if (task != null && task.getBarcodeWP() != null) {
-            //  task.setToolList(toolService.findByTask(task.getId()));
+            task.setToolList(toolService.findByTask(task.getId()));
             task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
             task.setAircraft(aircraftService.get(task.getTail()));
         }

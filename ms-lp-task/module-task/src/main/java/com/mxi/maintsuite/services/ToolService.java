@@ -24,12 +24,12 @@ public class ToolService {
     }
 
 
-    public Tool get(Integer id) {
+    public Tool get(Long id) {
         return toolDAO.get(id);
     }
 
 
-    public List<Tool> findByTask(Integer taskId) {
+    public List<Tool> findByTask(Long taskId) {
         return toolDAO.findByTask(taskId);
     }
 

@@ -14,11 +14,9 @@ import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-/**
- * @author Arun Gupta
- */
+
 @Entity
-@Table(name = "REST_DB_TOOLS")
+@Table(name = "LP_TOOL")
 @NamedQueries({
         @NamedQuery(name = "Tool.findAll", query = "SELECT t FROM Tool t"),
         @NamedQuery(name = "Tool.getById", query = "SELECT t FROM Tool t WHERE t.id=:id"),
@@ -32,31 +30,54 @@ public class Tool implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "TOOL_ID")
+    @Column(name = "LPTL_CODE")
     @NotNull
-    @ApiModelProperty(value = "id", required = true)
-    private Integer id;
+    @ApiModelProperty(value = "Identifier of a tool in the product Line Planning", required = true)
+    private Long id;
 
-    @Column(name = "TOOL_NAME")
+    @Column(name = "LPTK_CODE")
     @NotNull
-    @ApiModelProperty(value = "name", required = true)
+    @ApiModelProperty(value = "Identifier of a task in the product Line Planning", required = true)
+    private Long taskId;
+
+    @Column(name = "LPTL_CODE_MXI")
+    @NotNull
+    @ApiModelProperty(value = "Code of identifier of a tool in MXI", required = true)
+    private Integer codeMxi;
+
+    @Column(name = "LPTL_NAME")
+    @NotNull
+    @ApiModelProperty(value = "Name of a tool", required = true)
     private String name;
 
-    @Column(name = "TASK_ID")
+
+    @Column(name = "LPTL_QUANTITY")
     @NotNull
-    @ApiModelProperty(value = "taskId", required = true)
-    private Integer taskId;
+    @ApiModelProperty(value = "Quantity required of the tool", required = true)
+    private Double quantity;
 
-    public Tool() {
-    }
-
-
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
+
+    public Integer getCodeMxi() {
+        return codeMxi;
+    }
+
+    public void setCodeMxi(Integer codeMxi) {
+        this.codeMxi = codeMxi;
     }
 
     public String getName() {
@@ -67,20 +88,22 @@ public class Tool implements Serializable {
         this.name = name;
     }
 
-    public int getTaskId() {
-        return taskId;
+    public Double getQuantity() {
+        return quantity;
     }
 
-    public void setTaskId(int taskId) {
-        this.taskId = taskId;
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         return "Tool{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", taskId=" + taskId +
+                ", codeMxi=" + codeMxi +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
                 '}';
     }
 }
