@@ -17,19 +17,31 @@ public class TaskDAO {
     @Inject
     PersistenceHelper helper;
 
-    public Task get(Integer id) {
+    public Task get(Long id) {
 
         return helper.getEntityManager().createNamedQuery("Task.getById", Task.class).setParameter("id", id).getSingleResult();
     }
 
+    public Task get(String barcode) {
+
+        return helper.getEntityManager().createNamedQuery("Task.getByBarcode", Task.class).setParameter("barcode", barcode).getSingleResult();
+    }
 
     public List<Task> findAll() {
         final List<Task> taskList = helper.getEntityManager().createNamedQuery("Task.findAll", Task.class).getResultList();
         return taskList;
     }
 
-    public List<Task> findByWorkPackage(Integer workPackageId) {
+    public List<Task> findByWorkPackage(String barcode) {
 
-        return helper.getEntityManager().createNamedQuery("Task.findByWorkPackageId", Task.class).setParameter("workPackageId", workPackageId).getResultList();
+        return helper.getEntityManager().createNamedQuery("Task.findByWorkPackage", Task.class).setParameter("barcode", barcode).getResultList();
     }
+
+    public List<Task> findByAircraft(String tail) {
+
+        return helper.getEntityManager().createNamedQuery("Task.findByAircraft", Task.class).setParameter("tail", tail).getResultList();
+
+    }
+
+
 }

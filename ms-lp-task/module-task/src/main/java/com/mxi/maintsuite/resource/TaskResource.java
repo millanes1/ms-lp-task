@@ -36,7 +36,7 @@ public class TaskResource {
             notes = "Returns task as list",
             response = Task.class,
             responseContainer = "List",
-            nickname = "findTaskAll")
+            nickname = "Task.findAll")
     public Response get() throws NotFoundException {
 
 
@@ -50,7 +50,7 @@ public class TaskResource {
     @ApiOperation(value = "Get Task By Id",
             notes = "Returns task as Object",
             response = Task.class,
-            nickname = "getTaskById")
+            nickname = "Task.getById")
     @ApiResponses(value = {
             @ApiResponse(
                     code = RESPONSE_CODE_OK,
@@ -61,29 +61,74 @@ public class TaskResource {
             @ApiResponse(code = 200, message = "Unexpected error", response = Error.class)}
     )
 
-    public Response get(@ApiParam(value = "Identificator Task", required = true) @PathParam("id") int id) throws NotFoundException {
+    public Response get(@ApiParam(value = "Serial Identifier Task in the product Line Planning", required = true) @PathParam("id") Long id) throws NotFoundException {
 
         return Response.status(Response.Status.OK).entity(taskService.get(id)).build();
 
     }
 
-
     @GET
-    @Path("/workpackage/{id}")
+    @Path("/barcode/{barcode}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Find Tasks By WorkPacakage Id",
+    @ApiOperation(value = "Get Task By Barcode",
+            notes = "Returns task as Object",
+            response = Task.class,
+            nickname = "Task.getByBarcode")
+    @ApiResponses(value = {
+            @ApiResponse(
+                    code = RESPONSE_CODE_OK,
+                    message = "Task by Id",
+                    response = Task.class
+                    , responseContainer = "List"
+            ),
+            @ApiResponse(code = 200, message = "Unexpected error", response = Error.class)}
+    )
+
+    public Response get(@ApiParam(value = "Visual identifier of a task in the product Line Planning", required = true) @PathParam("barcode") String barcode) throws NotFoundException {
+
+        return Response.status(Response.Status.OK).entity(taskService.get(barcode
+        )).build();
+
+    }
+
+
+    @GET
+    @Path("/workpackage/{barcode}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Find Tasks By Barcode WorkPackage",
             notes = "Returns task as list",
             response = Task.class,
             responseContainer = "List",
-            nickname = "getTaskByWorkPackageId"
+            nickname = "Task.findByWorkPackage"
+
     )
-    public Response findByWorkPackageId(@ApiParam(value = "Identificator WorkPackage", required = true) @PathParam("id") int id) throws NotFoundException {
+    public Response findByWorkPackage(@ApiParam(value = "Visual identifier of a WorkPackage in the product Line Planning", required = true) @PathParam("barcode") String barcode) throws NotFoundException {
 
 
-        return Response.status(Response.Status.OK).entity(taskService.findByWorkPackage(id)).build();
+        return Response.status(Response.Status.OK).entity(taskService.findByWorkPackage(barcode)).build();
 
     }
+
+    @GET
+    @Path("/aircraft/{tail}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @ApiOperation(value = "Find Tasks By aircraft",
+            notes = "Returns task as list",
+            response = Task.class,
+            responseContainer = "List",
+            nickname = "Task.findByAircraft"
+    )
+    public Response findByAircraft(@ApiParam(value = "Identifier for Tail", required = true) @PathParam("tail") String tail) throws NotFoundException {
+
+
+        return Response.status(Response.Status.OK).entity(taskService.findByAircraft(
+                tail)).build();
+
+    }
+
 
 }
 

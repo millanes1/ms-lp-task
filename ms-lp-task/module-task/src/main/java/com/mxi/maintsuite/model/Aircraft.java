@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "LP_AIRCRAFT")
 @NamedQueries({@NamedQuery(name = "Aircraft.findAll", query = "SELECT a FROM Aircraft a"),
-        @NamedQuery(name = "Aircraft.getById", query = "SELECT a FROM Aircraft a WHERE a.tail=:tail")
+        @NamedQuery(name = "Aircraft.getById", query = "SELECT a FROM Aircraft a WHERE upper(a.tail)=upper(trim(:tail))")
 
 })
 public class Aircraft implements Serializable {

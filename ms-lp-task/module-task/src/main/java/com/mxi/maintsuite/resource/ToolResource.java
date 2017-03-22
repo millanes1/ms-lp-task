@@ -29,7 +29,7 @@ public class ToolResource {
             notes = "Returns tool as list",
             response = Tool.class,
             responseContainer = "List",
-            nickname = "findToolAll")
+            nickname = "Tool.findAll")
     public Response get() {
 
 
@@ -43,7 +43,7 @@ public class ToolResource {
     @ApiOperation(value = "Get Tool By Id",
             notes = "Returns tool as Object",
             response = Tool.class,
-            nickname = "getToolById"
+            nickname = "Took.getById"
     )
     public Response get(@PathParam("id") int id) {
         return Response.status(Response.Status.OK).entity(toolService.get(id)).build();
@@ -58,7 +58,7 @@ public class ToolResource {
             notes = "Returns task as list",
             response = Tool.class,
             responseContainer = "List",
-            nickname = "findToolByTaskId")
+            nickname = "Tool.findByTaskId")
     public Response findByTaskId(@PathParam("id") int id) {
         return Response.status(Response.Status.OK).entity(toolService.findByTask(id)).build();
 

@@ -29,7 +29,7 @@ public class WorkPackageResource {
             notes = "Returns tool as list",
             response = WorkPackage.class,
             responseContainer = "List",
-            nickname = "findWorkPackageAll")
+            nickname = "WorkPackage.findAll")
     public Response get() {
         return Response.status(Response.Status.OK).entity(workPackageService.findAll()).build();
     }
@@ -41,7 +41,7 @@ public class WorkPackageResource {
     @ApiOperation(value = "Get WorkPackage By barcode",
             notes = "Returns WorkPackage as Object",
             response = WorkPackage.class,
-            nickname = "getWorkPackageByBarcode")
+            nickname = "WorkPacakage.getByBarcode")
     public Response get(@PathParam("barcode") String barcode) {
         return Response.status(Response.Status.OK).entity(workPackageService.get(barcode)).build();
     }

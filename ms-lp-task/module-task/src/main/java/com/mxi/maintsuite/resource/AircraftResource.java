@@ -38,7 +38,7 @@ public class AircraftResource {
             notes = "Returns aircraft as list",
             response = Aircraft.class,
             responseContainer = "List",
-            nickname = "findAircraftAll")
+            nickname = "Aircraft.findAll")
     public Response get() throws NotFoundException {
 
 
@@ -52,7 +52,7 @@ public class AircraftResource {
     @ApiOperation(value = "Get Task By Id",
             notes = "Returns task as Object",
             response = Aircraft.class,
-            nickname = "getAircraftById")
+            nickname = "Aircraft.getById")
     @ApiResponses(value = {
             @ApiResponse(
                     code = RESPONSE_CODE_OK,
