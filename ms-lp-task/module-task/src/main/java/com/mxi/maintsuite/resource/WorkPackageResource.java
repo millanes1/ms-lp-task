@@ -35,15 +35,15 @@ public class WorkPackageResource {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/{barcode}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Get WorkPackage By Id",
+    @ApiOperation(value = "Get WorkPackage By barcode",
             notes = "Returns WorkPackage as Object",
-            response = Tool.class,
-            nickname = "getWorkPackageById")
-    public Response get(@PathParam("id") int id) {
-        return Response.status(Response.Status.OK).entity(workPackageService.get(id)).build();
+            response = WorkPackage.class,
+            nickname = "getWorkPackageByBarcode")
+    public Response get(@PathParam("barcode") String barcode) {
+        return Response.status(Response.Status.OK).entity(workPackageService.get(barcode)).build();
     }
 
 }

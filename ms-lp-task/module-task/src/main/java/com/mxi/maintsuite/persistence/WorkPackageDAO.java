@@ -18,9 +18,9 @@ public class WorkPackageDAO {
     @Inject
     PersistenceHelper helper;
 
-    public WorkPackage get(Integer id) {
+    public WorkPackage get(String barcode) {
 
-        return helper.getEntityManager().createNamedQuery("WorkPackage.getById", WorkPackage.class).setParameter("id", id).getSingleResult();
+        return helper.getEntityManager().createNamedQuery("WorkPackage.getByBarcode", WorkPackage.class).setParameter("barcode",barcode).getSingleResult();
     }
 
 

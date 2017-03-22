@@ -24,9 +24,9 @@ public class WorkPackageService {
     }
 
 
-    public WorkPackage get(Integer id) {
+    public WorkPackage get(String barcode) {
 
-        return workPackageDAO.get(id);
+        return workPackageDAO.get(barcode);
     }
 
 

@@ -38,7 +38,7 @@ public class TaskService {
         Task task = taskDAO.get(id);
         if (task != null && task.getWorkPackageId() != null) {
             task.setToolList(toolService.findByTask(task.getId()));
-            task.setWorkPackage(workPackageService.get(task.getWorkPackageId()));
+          //  task.setWorkPackage(workPackageService.get(task.getWorkPackageId()));
         }
         return taskDAO.get(id);
 
@@ -60,7 +60,7 @@ public class TaskService {
             item.setToolList(toolService.findByTask(item.getId()));
             ;
             if (item != null && item.getWorkPackageId() != null) {
-                item.setWorkPackage(workPackageService.get(item.getWorkPackageId()));
+           //     item.setWorkPackage(workPackageService.get(item.getWorkPackageId()));
             }
         }
     }
