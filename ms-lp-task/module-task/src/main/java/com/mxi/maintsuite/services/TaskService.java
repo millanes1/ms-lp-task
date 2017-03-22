@@ -24,56 +24,65 @@ public class TaskService {
     @EJB
     private ToolService toolService;
 
-    public List<Task> findAll() throws NotFoundException {
-        List<Task> taskList = taskDAO.findAll();
-        //this.complete(taskList);
+    @EJB
+    AircraftService aircraftService;
 
+    public List<Task> findAll() throws NotFoundException {
+
+        List<Task> taskList = taskDAO.findAll();
+        this.complete(taskList);
         return taskList;
     }
 
 
     public Task get(Long id) throws NotFoundException {
         Task task = taskDAO.get(id);
-        // if (task != null && task.getWorkPackageId() != null) {
-        //   task.setToolList(toolService.findByTask(task.getId()));
-        // task.setWorkPackage(workPackageService.get(task.getWorkPackageId()));
-        //}
-        return taskDAO.get(id);
-
-
+        this.complete(task);
+        /*System.out.println("TASK WP BARCODE :"+task.getBarcodeWP());
+        if (task != null && task.getBarcodeWP() != null) {
+            //  task.setToolList(toolService.findByTask(task.getId()));
+            task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
+        }*/
+        return task;
     }
 
 
     public Task get(String barcode) throws NotFoundException {
 
-        return taskDAO.get(barcode);
+        Task task = taskDAO.get(barcode);
+        this.complete(task);
+        return task;
     }
 
 
     public List<Task> findByAircraft(String tail) throws NotFoundException {
 
-        return taskDAO.findByAircraft(tail);
-
-
+        List<Task> taskList = taskDAO.findByAircraft(tail);
+        this.complete(taskList);
+        return taskList;
     }
 
     public List<Task> findByWorkPackage(String barcode) throws NotFoundException {
+
         List<Task> taskList = taskDAO.findByWorkPackage(barcode);
-        //  this.complete(taskList);
-
+        this.complete(taskList);
         return taskList;
-
-
     }
 
-  /*  private void complete(List<Task> taskList) throws NotFoundException {
+    private void complete(Task task) throws NotFoundException {
+
+        if (task != null && task.getBarcodeWP() != null) {
+            //  task.setToolList(toolService.findByTask(task.getId()));
+            task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
+            task.setAircraft(aircraftService.get(task.getTail()));
+        }
+    }
+
+    private void complete(List<Task> taskList) throws NotFoundException {
         for (Task item : taskList) {
-            item.setToolList(toolService.findByTask(item.getId()));
-            ;
-           /* if (item != null && item.getWorkPackageId() != null) {
-                item.setWorkPackage(workPackageService.get(item.getWorkPackageId()));
-            }*/
-    // }
+            this.complete(item);
+        }
+    }
 }
 
 
