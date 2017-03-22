@@ -110,7 +110,7 @@ public class Task implements Serializable {
     @NotNull
     @ApiModelProperty(value = "Duration that has a task")
     @Column(name = "LPTK_DURATION")
-    private Integer duration;
+    private Double duration;
 
 
     @ApiModelProperty(value = "Value that identifies a concept global priority")
@@ -237,11 +237,11 @@ public class Task implements Serializable {
         this.yield = yield;
     }
 
-    public Integer getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Double duration) {
         this.duration = duration;
     }
 
