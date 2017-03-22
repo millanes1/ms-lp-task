@@ -43,22 +43,22 @@ public class Task implements Serializable {
     private String barcode;
 
 
-   /* @NotNull
+    @NotNull
     @ApiModelProperty(value = "Code of identifier of a task in MXI", required = true)
     @Column(name = "LPTK_CODE_MXI")
-    private Integer codeMxi;*/
+    private Integer codeMxi;
 
     @NotNull
     @ApiModelProperty(value = "Registration code of an aircraft", required = true)
     @Column(name = "LPAC_AC_REG_CD")
     private String tail;
 
-         @NotNull
-         @ApiModelProperty(value = "Visual identifier of a Work Package")
-         @Column(name="LPWP_BARCODE")
+    @NotNull
+    @ApiModelProperty(value = "Visual identifier of a Work Package")
+    @Column(name = "LPWP_BARCODE")
     private String barcodeWP;
 
-   /*
+
     @NotNull
     @ApiModelProperty(value = "Name of a task", required = true)
     @Column(name = "LPTK_NAME")
@@ -91,11 +91,10 @@ public class Task implements Serializable {
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm:ss")
-    private Date dueDateExtended;*/
+    private Date dueDateExtended;
 
 
-
-   /* @ApiModelProperty(value = "Date of defined limit for execution of task, attribute for product Line Planning", required = true)
+    @ApiModelProperty(value = "Date of defined limit for execution of task, attribute for product Line Planning", required = true)
     @Column(name = "LPTK_DUE_DATE_FNL")
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
@@ -129,7 +128,7 @@ public class Task implements Serializable {
 
     @ApiModelProperty(value = "Detail Aircraft", required = false)
     @Transient
-    private Aircraft aircraft;*/
+    private Aircraft aircraft;
 
     public String getTail() {
         return tail;
@@ -153,44 +152,10 @@ public class Task implements Serializable {
 
     public Task() {
         this.toolList = new ArrayList<Tool>();
-        //  this.workPackage = new WorkPackage();
-        //  this.aircraft = new Aircraft();
+        this.workPackage = new WorkPackage();
+        this.aircraft = new Aircraft();
 
     }
-
-  /*
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }*/
-
-
-    public List<Tool> getToolList() {
-        return toolList;
-    }
-
-    public void setToolList(List<Tool> toolList) {
-        this.toolList = toolList;
-    }
-
-   /* public WorkPackage getWorkPackage() {
-        return workPackage;
-    }
-
-    public void setWorkPackage(WorkPackage workPackage) {
-        this.workPackage = workPackage;
-    }
-
-  /*  public Aircraft getAircraft() {
-        return aircraft;
-    }
-
-    public void setAircraft(Aircraft aircraft) {
-        this.aircraft = aircraft;
-    }*/
 
     public Long getId() {
         return id;
@@ -208,7 +173,7 @@ public class Task implements Serializable {
         this.barcode = barcode;
     }
 
-  /*  public Integer getCodeMxi() {
+    public Integer getCodeMxi() {
         return codeMxi;
     }
 
@@ -216,20 +181,12 @@ public class Task implements Serializable {
         this.codeMxi = codeMxi;
     }
 
-    public String getTail() {
-        return tail;
+    public String getName() {
+        return name;
     }
 
-    public void setTail(String tail) {
-        this.tail = tail;
-    }
-
-    public String getBarcodeWP() {
-        return barcodeWP;
-    }
-
-    public void setBarcodeWP(String barcodeWP) {
-        this.barcodeWP = barcodeWP;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getStatus() {
@@ -304,6 +261,30 @@ public class Task implements Serializable {
         this.scheduleStatus = scheduleStatus;
     }
 
+    public WorkPackage getWorkPackage() {
+        return workPackage;
+    }
+
+    public void setWorkPackage(WorkPackage workPackage) {
+        this.workPackage = workPackage;
+    }
+
+    public Aircraft getAircraft() {
+        return aircraft;
+    }
+
+    public void setAircraft(Aircraft aircraft) {
+        this.aircraft = aircraft;
+    }
+
+    public List<Tool> getToolList() {
+        return toolList;
+    }
+
+    public void setToolList(List<Tool> toolList) {
+        this.toolList = toolList;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -326,5 +307,5 @@ public class Task implements Serializable {
                 ", aircraft=" + aircraft +
                 ", toolList=" + toolList +
                 '}';
-    }*/
+    }
 }
