@@ -55,7 +55,7 @@ public class ToolResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Find Tools By taskId",
-            notes = "Returns task as list",
+            notes = "Returns tool as list",
             response = Tool.class,
             responseContainer = "List",
             nickname = "Tool.findByTaskId")

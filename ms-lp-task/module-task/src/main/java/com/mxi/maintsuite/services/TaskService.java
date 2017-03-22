@@ -1,6 +1,7 @@
 package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.exception.NotFoundException;
+import com.mxi.maintsuite.model.Labour;
 import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.persistence.TaskDAO;
 
@@ -25,7 +26,10 @@ public class TaskService {
     private ToolService toolService;
 
     @EJB
-    AircraftService aircraftService;
+    private AircraftService aircraftService;
+
+    @EJB
+    private LabourService labourService;
 
     public List<Task> findAll() throws NotFoundException {
 
@@ -64,12 +68,14 @@ public class TaskService {
         return taskList;
     }
 
+
     private void complete(Task task) throws NotFoundException {
 
-        if (task != null && task.getBarcodeWP() != null) {
+        if (task != null) {
             task.setToolList(toolService.findByTask(task.getId()));
             task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
             task.setAircraft(aircraftService.get(task.getTail()));
+            task.setLabourList(labourService.findByTask(task.getId()));
         }
     }
 

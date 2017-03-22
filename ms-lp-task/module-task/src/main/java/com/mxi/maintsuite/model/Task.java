@@ -148,13 +148,14 @@ public class Task implements Serializable {
 
     @Transient
     private List<Tool> toolList;
-
+    @Transient
+    private List<Labour> labourList;
 
     public Task() {
         this.toolList = new ArrayList<Tool>();
         this.workPackage = new WorkPackage();
         this.aircraft = new Aircraft();
-
+        this.labourList=new ArrayList<Labour>();
     }
 
     public Long getId() {
@@ -285,6 +286,14 @@ public class Task implements Serializable {
         this.toolList = toolList;
     }
 
+    public List<Labour> getLabourList() {
+        return labourList;
+    }
+
+    public void setLabourList(List<Labour> labourList) {
+        this.labourList = labourList;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -306,6 +315,7 @@ public class Task implements Serializable {
                 ", workPackage=" + workPackage +
                 ", aircraft=" + aircraft +
                 ", toolList=" + toolList +
+                ", labourList=" + labourList +
                 '}';
     }
 }

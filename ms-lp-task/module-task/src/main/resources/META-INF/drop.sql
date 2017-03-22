@@ -4,12 +4,9 @@ DROP TABLE public.LP_TOOL;
 
 DROP TABLE public.LP_WORK_PACKAGE;
 
-
 DROP TABLE public.LP_AIRCRAFT;
 
-
-
-
+DROP TABLE public.LP_LABOUR;
 
 
 
