@@ -28,7 +28,8 @@ public class WorkPackageResource {
     @ApiOperation(value = "Get the all WorkPacakage",
             notes = "Returns tool as list",
             response = WorkPackage.class,
-            responseContainer = "List")
+            responseContainer = "List",
+            nickname = "findWorkPackageAll")
     public Response get() {
         return Response.status(Response.Status.OK).entity(workPackageService.findAll()).build();
     }
@@ -39,7 +40,8 @@ public class WorkPackageResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get WorkPackage By Id",
             notes = "Returns WorkPackage as Object",
-            response = Tool.class)
+            response = Tool.class,
+            nickname = "getWorkPackageById")
     public Response get(@PathParam("id") int id) {
         return Response.status(Response.Status.OK).entity(workPackageService.get(id)).build();
     }

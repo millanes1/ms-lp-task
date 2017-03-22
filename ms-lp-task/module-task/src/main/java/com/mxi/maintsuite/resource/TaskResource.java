@@ -35,7 +35,8 @@ public class TaskResource {
     @ApiOperation(value = "Get the all task",
             notes = "Returns task as list",
             response = Task.class,
-            responseContainer = "List")
+            responseContainer = "List",
+            nickname = "findTaskAll")
     public Response get() throws NotFoundException {
 
 
@@ -48,7 +49,8 @@ public class TaskResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get Task By Id",
             notes = "Returns task as Object",
-            response = Task.class)
+            response = Task.class,
+            nickname = "getTaskById")
     @ApiResponses(value = {
             @ApiResponse(
                     code = RESPONSE_CODE_OK,
@@ -73,7 +75,8 @@ public class TaskResource {
     @ApiOperation(value = "Find Tasks By WorkPacakage Id",
             notes = "Returns task as list",
             response = Task.class,
-            responseContainer = "List"
+            responseContainer = "List",
+            nickname = "getTaskByWorkPackageId"
     )
     public Response findByWorkPackageId(@ApiParam(value = "Identificator WorkPackage", required = true) @PathParam("id") int id) throws NotFoundException {
 

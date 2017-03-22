@@ -28,7 +28,8 @@ public class ToolResource {
     @ApiOperation(value = "Get the all tool",
             notes = "Returns tool as list",
             response = Tool.class,
-            responseContainer = "List")
+            responseContainer = "List",
+            nickname = "findToolAll")
     public Response get() {
 
 
@@ -41,7 +42,9 @@ public class ToolResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get Tool By Id",
             notes = "Returns tool as Object",
-            response = Tool.class)
+            response = Tool.class,
+            nickname = "getToolById"
+    )
     public Response get(@PathParam("id") int id) {
         return Response.status(Response.Status.OK).entity(toolService.get(id)).build();
     }
@@ -51,10 +54,11 @@ public class ToolResource {
     @Path("/task/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @ApiOperation(value = "Find Tasks By WorkPacakage Id",
+    @ApiOperation(value = "Find Tools By taskId",
             notes = "Returns task as list",
-            response = Task.class,
-            responseContainer = "List")
+            response = Tool.class,
+            responseContainer = "List",
+            nickname = "findToolByTaskId")
     public Response findByTaskId(@PathParam("id") int id) {
         return Response.status(Response.Status.OK).entity(toolService.findByTask(id)).build();
 
