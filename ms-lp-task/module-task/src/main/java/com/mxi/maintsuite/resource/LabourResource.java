@@ -27,7 +27,7 @@ public class LabourResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @ApiOperation(value = "Get the all labour",
-            notes = "Returns tool as list",
+            notes = "Returns labour as list",
             response = Labour.class,
             responseContainer = "List",
             nickname = "Labour.findAll")

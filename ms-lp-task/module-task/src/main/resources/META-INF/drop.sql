@@ -8,6 +8,8 @@ DROP TABLE public.LP_AIRCRAFT;
 
 DROP TABLE public.LP_LABOUR;
 
+DROP TABLE public.LP_PART;
+
 
 
 

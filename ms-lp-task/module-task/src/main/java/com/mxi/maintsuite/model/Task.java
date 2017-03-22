@@ -130,32 +130,20 @@ public class Task implements Serializable {
     @Transient
     private Aircraft aircraft;
 
-    public String getTail() {
-        return tail;
-    }
-
-    public void setTail(String tail) {
-        this.tail = tail;
-    }
-
-    public String getBarcodeWP() {
-        return barcodeWP;
-    }
-
-    public void setBarcodeWP(String barcodeWP) {
-        this.barcodeWP = barcodeWP;
-    }
 
     @Transient
     private List<Tool> toolList;
     @Transient
     private List<Labour> labourList;
+    @Transient
+    private List<Part> partList;
 
     public Task() {
         this.toolList = new ArrayList<Tool>();
         this.workPackage = new WorkPackage();
         this.aircraft = new Aircraft();
-        this.labourList=new ArrayList<Labour>();
+        this.labourList = new ArrayList<Labour>();
+        this.partList = new ArrayList<Part>();
     }
 
     public Long getId() {
@@ -180,6 +168,22 @@ public class Task implements Serializable {
 
     public void setCodeMxi(Integer codeMxi) {
         this.codeMxi = codeMxi;
+    }
+
+    public String getTail() {
+        return tail;
+    }
+
+    public void setTail(String tail) {
+        this.tail = tail;
+    }
+
+    public String getBarcodeWP() {
+        return barcodeWP;
+    }
+
+    public void setBarcodeWP(String barcodeWP) {
+        this.barcodeWP = barcodeWP;
     }
 
     public String getName() {
@@ -294,6 +298,14 @@ public class Task implements Serializable {
         this.labourList = labourList;
     }
 
+    public List<Part> getPartList() {
+        return partList;
+    }
+
+    public void setPartList(List<Part> partList) {
+        this.partList = partList;
+    }
+
     @Override
     public String toString() {
         return "Task{" +
@@ -316,6 +328,7 @@ public class Task implements Serializable {
                 ", aircraft=" + aircraft +
                 ", toolList=" + toolList +
                 ", labourList=" + labourList +
+                ", partList=" + partList +
                 '}';
     }
 }

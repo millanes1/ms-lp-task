@@ -30,6 +30,9 @@ public class TaskService {
 
     @EJB
     private LabourService labourService;
+    @EJB
+    private PartService partService;
+
 
     public List<Task> findAll() throws NotFoundException {
 
@@ -76,6 +79,7 @@ public class TaskService {
             task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
             task.setAircraft(aircraftService.get(task.getTail()));
             task.setLabourList(labourService.findByTask(task.getId()));
+            task.setPartList(partService.findByTask(task.getId()));
         }
     }
 
