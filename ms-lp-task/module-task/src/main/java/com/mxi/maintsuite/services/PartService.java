@@ -1,9 +1,8 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Part;
-import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.persistence.PartDAO;
-import com.mxi.maintsuite.persistence.ToolDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -21,16 +20,16 @@ public class PartService {
     private PartDAO partDAO;
 
 
-    public List<Part> findAll() {
+    public List<Part> findAll() throws AppException {
         return partDAO.findAll();
     }
 
 
-    public Part get(Long id) {
+    public Part get(Long id) throws AppException {
         return partDAO.get(id);
     }
 
-    public List<Part> findByTask(Long taskId) {
+    public List<Part> findByTask(Long taskId) throws AppException {
         return partDAO.findByTask(taskId);
     }
 

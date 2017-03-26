@@ -1,10 +1,12 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.exception.NotFoundException;
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Aircraft;
 import com.mxi.maintsuite.services.AircraftService;
-import io.swagger.annotations.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 import javax.ejb.EJB;
 import javax.ws.rs.*;
@@ -23,11 +25,6 @@ public class AircraftResource {
     AircraftService aircraftService;
 
 
-    private static final int RESPONSE_CODE_OK = 200;
-    private static final int RESPONSE_CODE_CREATED = 201;
-    private static final int RESPONSE_CODE_NOCONTENT = 204;
-    private static final int RESPONSE_CODE_NOTFOUND = 404;
-
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -36,7 +33,7 @@ public class AircraftResource {
             response = Aircraft.class,
             responseContainer = "List",
             nickname = "Aircraft.findAll")
-    public Response get() throws NotFoundException {
+    public Response get() throws AppException {
 
 
         return Response.status(Response.Status.OK).entity(aircraftService.findAll()).build();
@@ -52,15 +49,7 @@ public class AircraftResource {
             nickname = "Aircraft.getById")
 
 
-    @ApiResponses(value = {
-            @ApiResponse(
-                    code = RESPONSE_CODE_OK,
-                    message = "Aircraft by Id",
-                    response = Aircraft.class
-            )}
-    )
-
-    public Response get(@ApiParam(value = "Identificator tail", required = true) @PathParam("tail") String tail) throws NotFoundException {
+    public Response get(@ApiParam(value = "Identificator tail", required = true) @PathParam("tail") String tail) throws AppException {
 
         return Response.status(Response.Status.OK).entity(aircraftService.get(tail)).build();
 

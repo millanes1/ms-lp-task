@@ -1,7 +1,7 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.model.Labour;
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Part;
 import com.mxi.maintsuite.services.PartService;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class PartResource {
             response = Part.class,
             responseContainer = "List",
             nickname = "Part.findAll")
-    public Response get() {
+    public Response get() throws AppException {
 
 
         return Response.status(Response.Status.OK).entity(partService.findAll()).build();
@@ -45,7 +45,7 @@ public class PartResource {
             response = Part.class,
             nickname = "Part.getById"
     )
-    public Response get(@PathParam("id") Long id) {
+    public Response get(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(partService.get(id)).build();
     }
 
@@ -59,7 +59,7 @@ public class PartResource {
             response = Part.class,
             responseContainer = "List",
             nickname = "Part.findByTaskId")
-    public Response findByTaskId(@PathParam("id") Long id) {
+    public Response findByTaskId(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(partService.findByTask(id)).build();
 
 

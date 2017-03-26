@@ -1,9 +1,8 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Labour;
-import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.persistence.LabourDAO;
-import com.mxi.maintsuite.persistence.ToolDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -21,17 +20,17 @@ public class LabourService {
     private LabourDAO labourDAO;
 
 
-    public List<Labour> findAll() {
+    public List<Labour> findAll() throws AppException {
         return labourDAO.findAll();
     }
 
 
-    public Labour get(Long id) {
+    public Labour get(Long id) throws AppException {
         return labourDAO.get(id);
     }
 
 
-    public List<Labour> findByTask(Long taskId) {
+    public List<Labour> findByTask(Long taskId) throws AppException {
         return labourDAO.findByTask(taskId);
     }
 

@@ -1,5 +1,6 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Aircraft;
 import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.persistence.AircraftDAO;
@@ -21,13 +22,13 @@ public class AircraftService {
     private AircraftDAO aircraftDAO;
 
 
-    public List<Aircraft> findAll() {
+    public List<Aircraft> findAll() throws AppException {
         ;
         return aircraftDAO.findAll();
 
     }
 
-    public Aircraft get(String tail) {
+    public Aircraft get(String tail) throws AppException {
 
         return aircraftDAO.get(tail);
     }

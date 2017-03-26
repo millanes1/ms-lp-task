@@ -1,7 +1,7 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.model.Tool;
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.services.WorkPackageService;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class WorkPackageResource {
             response = WorkPackage.class,
             responseContainer = "List",
             nickname = "WorkPackage.findAll")
-    public Response get() {
+    public Response get() throws AppException {
         return Response.status(Response.Status.OK).entity(workPackageService.findAll()).build();
     }
 
@@ -42,7 +42,7 @@ public class WorkPackageResource {
             notes = "Returns WorkPackage as Object",
             response = WorkPackage.class,
             nickname = "WorkPacakage.getByBarcode")
-    public Response get(@PathParam("barcode") String barcode) {
+    public Response get(@PathParam("barcode") String barcode) throws AppException {
         return Response.status(Response.Status.OK).entity(workPackageService.get(barcode)).build();
     }
 

@@ -1,19 +1,13 @@
 package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.errorhandling.AppException;
-import com.mxi.maintsuite.exception.NotFoundException;
-import com.mxi.maintsuite.filter.AppConstants;
-import com.mxi.maintsuite.model.Labour;
-import com.mxi.maintsuite.model.Pagination;
 import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.persistence.TaskDAO;
-import org.apache.commons.lang3.StringUtils;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.ws.rs.core.Response;
 import java.util.List;
 
 
@@ -49,8 +43,8 @@ public class TaskService {
 
     public List<Task> findByUser(String userMail, Integer offset, Integer limit) throws AppException {
 
-        System.out.println("Pagination out :" + offset + " / " + limit);
-
+//                throw   new AppException(Response.Status.CONFLICT.getStatusCode(), 409, "Podcast with feed already existing in the database with the id " + -1,
+//                "Please verify that the feed and title are properly generated", AppConstants.BLOG_POST_URL);
         List<Task> taskList = taskDAO.findByPagination(offset, limit);
         this.complete(taskList);
         return taskList;
@@ -67,14 +61,6 @@ public class TaskService {
     public Task get(String barcode) throws AppException {
 
         Task task = taskDAO.get(barcode);
-
-        if (task != null && StringUtils.isNotEmpty(task.getBarcode())) {
-            throw new AppException(Response.Status.NOT_FOUND.getStatusCode(),
-                    404,
-                    "The podcast you requested with id " + barcode + " was not found in the database",
-                    "Verify the existence of the podcast with the id " + barcode + " in the database",
-                    AppConstants.BLOG_POST_URL);
-        }
 
 
         this.complete(task);

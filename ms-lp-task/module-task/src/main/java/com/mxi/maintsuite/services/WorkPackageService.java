@@ -1,5 +1,6 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.persistence.WorkPackageDAO;
 
@@ -19,12 +20,12 @@ public class WorkPackageService {
     private WorkPackageDAO workPackageDAO;
 
 
-    public List<WorkPackage> findAll() {
+    public List<WorkPackage> findAll() throws AppException {
         return workPackageDAO.findAll();
     }
 
 
-    public WorkPackage get(String barcode) {
+    public WorkPackage get(String barcode) throws AppException {
 
         return workPackageDAO.get(barcode);
     }

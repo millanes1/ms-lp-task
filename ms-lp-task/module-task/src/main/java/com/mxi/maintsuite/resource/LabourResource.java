@@ -1,10 +1,9 @@
 package com.mxi.maintsuite.resource;
 
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Labour;
-import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.services.LabourService;
-import com.mxi.maintsuite.services.ToolService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -31,7 +30,7 @@ public class LabourResource {
             response = Labour.class,
             responseContainer = "List",
             nickname = "Labour.findAll")
-    public Response get() {
+    public Response get() throws AppException {
 
 
         return Response.status(Response.Status.OK).entity(labourService.findAll()).build();
@@ -46,7 +45,7 @@ public class LabourResource {
             response = Labour.class,
             nickname = "Labour.getById"
     )
-    public Response get(@PathParam("id") Long id) {
+    public Response get(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(labourService.get(id)).build();
     }
 
@@ -60,7 +59,7 @@ public class LabourResource {
             response = Labour.class,
             responseContainer = "List",
             nickname = "Labour.findByTaskId")
-    public Response findByTaskId(@PathParam("id") Long id) {
+    public Response findByTaskId(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(labourService.findByTask(id)).build();
 
 

@@ -34,8 +34,8 @@ public class TaskDAO {
     }
 
     public List<Task> findByPagination(Integer offset, Integer limit) {
-        System.out.println("pagination task");
-        offset = offset > 0 ? offset - 1 : offset;
+
+        offset = (offset != null && offset > 0) ? offset - 1 : offset;
         final List<Task> taskList = helper.getEntityManager().createNamedQuery("Task.findAll", Task.class).setFirstResult(offset).setMaxResults(limit).getResultList();
 
         return taskList;

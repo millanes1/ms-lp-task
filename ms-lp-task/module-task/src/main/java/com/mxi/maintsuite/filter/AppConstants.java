@@ -6,6 +6,6 @@ package com.mxi.maintsuite.filter;
 public class AppConstants {
 
 
-    public static final int GENERIC_APP_ERROR_CODE = 5001;
-    public static final String BLOG_POST_URL = "here will be the blo post url";
+    public static final int GENERIC_APP_ERROR_CODE = 500;
+    public static final String BLOG_POST_URL = "post url";
 }

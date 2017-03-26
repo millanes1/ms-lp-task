@@ -1,5 +1,6 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.persistence.ToolDAO;
 
@@ -19,17 +20,17 @@ public class ToolService {
     private ToolDAO toolDAO;
 
 
-    public List<Tool> findAll() {
+    public List<Tool> findAll() throws AppException {
         return toolDAO.findAll();
     }
 
 
-    public Tool get(Long id) {
+    public Tool get(Long id) throws AppException {
         return toolDAO.get(id);
     }
 
 
-    public List<Tool> findByTask(Long taskId) {
+    public List<Tool> findByTask(Long taskId) throws AppException {
         return toolDAO.findByTask(taskId);
     }
 

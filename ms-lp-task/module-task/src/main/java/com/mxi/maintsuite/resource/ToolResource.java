@@ -1,7 +1,7 @@
 package com.mxi.maintsuite.resource;
 
 
-import com.mxi.maintsuite.model.Task;
+import com.mxi.maintsuite.errorhandling.AppException;
 import com.mxi.maintsuite.model.Tool;
 import com.mxi.maintsuite.services.ToolService;
 import io.swagger.annotations.Api;
@@ -30,7 +30,7 @@ public class ToolResource {
             response = Tool.class,
             responseContainer = "List",
             nickname = "Tool.findAll")
-    public Response get() {
+    public Response get() throws AppException {
 
 
         return Response.status(Response.Status.OK).entity(toolService.findAll()).build();
@@ -45,7 +45,7 @@ public class ToolResource {
             response = Tool.class,
             nickname = "Tool.getById"
     )
-    public Response get(@PathParam("id") Long id) {
+    public Response get(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(toolService.get(id)).build();
     }
 
@@ -59,7 +59,7 @@ public class ToolResource {
             response = Tool.class,
             responseContainer = "List",
             nickname = "Tool.findByTaskId")
-    public Response findByTaskId(@PathParam("id") Long id) {
+    public Response findByTaskId(@PathParam("id") Long id) throws AppException {
         return Response.status(Response.Status.OK).entity(toolService.findByTask(id)).build();
 
 
