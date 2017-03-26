@@ -3,10 +3,7 @@ package com.mxi.maintsuite.resource;
 
 import com.mxi.maintsuite.exception.NotFoundException;
 import com.mxi.maintsuite.model.Aircraft;
-import com.mxi.maintsuite.model.Error;
-import com.mxi.maintsuite.model.Task;
 import com.mxi.maintsuite.services.AircraftService;
-import com.mxi.maintsuite.services.TaskService;
 import io.swagger.annotations.*;
 
 import javax.ejb.EJB;
@@ -53,6 +50,8 @@ public class AircraftResource {
             notes = "Returns task as Object",
             response = Aircraft.class,
             nickname = "Aircraft.getById")
+
+
     @ApiResponses(value = {
             @ApiResponse(
                     code = RESPONSE_CODE_OK,

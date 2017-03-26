@@ -9,6 +9,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,7 +29,9 @@ import java.util.Date;
 })
 @JsonRootName(value = "Part")
 @ApiModel(value = "Part", description = "Information associated to a Part")
-@XmlRootElement
+@Getter
+@Setter
+@ToString
 public class Part implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -72,72 +77,5 @@ public class Part implements Serializable {
             pattern = "yyyy-MM-dd hh:mm:ss")
     private Date estimatedArrival;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
-
-    public Integer getCodeMxi() {
-        return codeMxi;
-    }
-
-    public void setCodeMxi(Integer codeMxi) {
-        this.codeMxi = codeMxi;
-    }
-
-    public Integer getCodeGroupMxi() {
-        return codeGroupMxi;
-    }
-
-    public void setCodeGroupMxi(Integer codeGroupMxi) {
-        this.codeGroupMxi = codeGroupMxi;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    public Date getEstimatedArrival() {
-        return estimatedArrival;
-    }
-
-    public void setEstimatedArrival(Date estimatedArrival) {
-        this.estimatedArrival = estimatedArrival;
-    }
-
-    @Override
-    public String toString() {
-        return "Part{" +
-                "id=" + id +
-                ", taskId=" + taskId +
-                ", codeMxi=" + codeMxi +
-                ", codeGroupMxi=" + codeGroupMxi +
-                ", status='" + status + '\'' +
-                ", quantity=" + quantity +
-                ", estimatedArrival=" + estimatedArrival +
-                '}';
-    }
 }

@@ -8,6 +8,9 @@ package com.mxi.maintsuite.model;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,7 +27,9 @@ import java.io.Serializable;
 })
 @JsonRootName(value = "Tool")
 @ApiModel(value = "Tool", description = "Information associated to a Tool")
-@XmlRootElement
+@Getter
+@Setter
+@ToString
 public class Tool implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,54 +61,4 @@ public class Tool implements Serializable {
     @ApiModelProperty(value = "Quantity required of the tool", required = true)
     private Double quantity;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
-
-    public Integer getCodeMxi() {
-        return codeMxi;
-    }
-
-    public void setCodeMxi(Integer codeMxi) {
-        this.codeMxi = codeMxi;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    @Override
-    public String toString() {
-        return "Tool{" +
-                "id=" + id +
-                ", taskId=" + taskId +
-                ", codeMxi=" + codeMxi +
-                ", name='" + name + '\'' +
-                ", quantity=" + quantity +
-                '}';
-    }
 }

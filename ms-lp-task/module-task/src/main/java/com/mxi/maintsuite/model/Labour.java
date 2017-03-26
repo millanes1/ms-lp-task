@@ -8,6 +8,9 @@ package com.mxi.maintsuite.model;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -24,7 +27,9 @@ import java.io.Serializable;
 })
 @JsonRootName(value = "Labour")
 @ApiModel(value = "Labour", description = "Information associated to a Labour")
-@XmlRootElement
+@Getter
+@Setter
+@ToString
 public class Labour implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,54 +62,4 @@ public class Labour implements Serializable {
     private Double manHrs;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getTaskId() {
-        return taskId;
-    }
-
-    public void setTaskId(Long taskId) {
-        this.taskId = taskId;
-    }
-
-    public String getSkill() {
-        return skill;
-    }
-
-    public void setSkill(String skill) {
-        this.skill = skill;
-    }
-
-    public Integer getManRequired() {
-        return manRequired;
-    }
-
-    public void setManRequired(Integer manRequired) {
-        this.manRequired = manRequired;
-    }
-
-    public Double getManHrs() {
-        return manHrs;
-    }
-
-    public void setManHrs(Double manHrs) {
-        this.manHrs = manHrs;
-    }
-
-    @Override
-    public String toString() {
-        return "Labour{" +
-                "id=" + id +
-                ", taskId=" + taskId +
-                ", skill='" + skill + '\'' +
-                ", manRequired=" + manRequired +
-                ", manHrs=" + manHrs +
-                '}';
-    }
 }

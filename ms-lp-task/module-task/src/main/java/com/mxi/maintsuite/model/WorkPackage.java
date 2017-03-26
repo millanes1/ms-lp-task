@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -22,7 +25,9 @@ import java.util.Date;
 })
 @JsonRootName(value = "WorkPackage")
 @ApiModel(value = "WorkPackage", description = "Information associated to a WorkPackage")
-@XmlRootElement
+@Getter
+@Setter
+@ToString
 public class WorkPackage implements Serializable {
     @Transient
     private static final long serialVersionUID = 1L;
@@ -65,67 +70,5 @@ public class WorkPackage implements Serializable {
     @ApiModelProperty(value = "Date and time off works finish")
     private Date endDate;
 
-    public WorkPackage() {
 
-    }
-
-    public String getBarcode() {
-        return barcode;
-    }
-
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    @Override
-    public String toString() {
-        return "WorkPackage{" +
-                "barcode='" + barcode + '\'' +
-                ", name='" + name + '\'' +
-                ", status='" + status + '\'' +
-                ", location='" + location + '\'' +
-                ", beginDate=" + beginDate +
-                ", endDate=" + endDate +
-                '}';
-    }
 }
