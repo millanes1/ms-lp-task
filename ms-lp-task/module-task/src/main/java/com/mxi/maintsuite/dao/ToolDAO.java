@@ -1,35 +1,21 @@
 package com.mxi.maintsuite.dao;
 
-import com.mxi.maintsuite.PersistenceHelper;
 import com.mxi.maintsuite.to.Tool;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.util.List;
 
 /**
  * Created by millanes on 20-03-17.
  */
 
-@ApplicationScoped
-public class ToolDAO {
 
-    @Inject
-    PersistenceHelper helper;
-
-    public Tool get(Long id) {
-
-        return helper.getEntityManager().createNamedQuery("Tool.getById", Tool.class).setParameter("id", id).getSingleResult();
-    }
+public interface ToolDAO {
 
 
-    public List<Tool> findAll() {
-        return helper.getEntityManager().createNamedQuery("Tool.findAll", Tool.class).getResultList();
+    Tool get(final Long id);
 
-    }
 
-    public List<Tool> findByTask(Long taskId) {
+    List<Tool> findAll();
 
-        return helper.getEntityManager().createNamedQuery("Tool.findByTaskId", Tool.class).setParameter("taskId", taskId).getResultList();
-    }
+    List<Tool> findByTask(final Long taskId);
 }

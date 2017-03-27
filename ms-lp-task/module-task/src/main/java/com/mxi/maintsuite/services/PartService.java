@@ -24,11 +24,11 @@ public class PartService {
     }
 
 
-    public Part get(Long id) throws AppException {
+    public Part get(final Long id) throws AppException {
         return partDAO.get(id);
     }
 
-    public List<Part> findByTask(Long taskId) throws AppException {
+    public List<Part> findByTask(final Long taskId) throws AppException {
         return partDAO.findByTask(taskId);
     }
 

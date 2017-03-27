@@ -21,7 +21,6 @@ public class PartDAOImpl implements PartDAO {
     private static final String SQL = "SELECT LPPT_CODE, LPTK_CODE, LPPT_CODE_MXI, LPPT_CODE_MXI_GROUP, LPPT_STATUS, LPPT_QUANTITY,LPPT_DATE_ETA, LPPT_NAME FROM LP_PART ";
 
 
-
     @Override
     public Part get(final Long id) {
         final String query = SQL + "WHERE LPPT_CODE = '" + id + "'";

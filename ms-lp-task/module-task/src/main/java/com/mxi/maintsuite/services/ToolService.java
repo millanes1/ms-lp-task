@@ -1,12 +1,12 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.dao.ToolDAO;
+import com.mxi.maintsuite.dao.ToolDAOImpl;
 import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Tool;
-import com.mxi.maintsuite.dao.ToolDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -16,8 +16,8 @@ import java.util.List;
 @LocalBean
 public class ToolService {
 
-    @Inject
-    private ToolDAO toolDAO;
+
+    private static ToolDAO toolDAO = new ToolDAOImpl();
 
 
     public List<Tool> findAll() throws AppException {
@@ -25,12 +25,12 @@ public class ToolService {
     }
 
 
-    public Tool get(Long id) throws AppException {
+    public Tool get(final Long id) throws AppException {
         return toolDAO.get(id);
     }
 
 
-    public List<Tool> findByTask(Long taskId) throws AppException {
+    public List<Tool> findByTask(final Long taskId) throws AppException {
         return toolDAO.findByTask(taskId);
     }
 
