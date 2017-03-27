@@ -1,12 +1,12 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.dao.PartDAO;
+import com.mxi.maintsuite.dao.PartDAOImpl;
 import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Part;
-import com.mxi.maintsuite.dao.PartDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -16,8 +16,7 @@ import java.util.List;
 @LocalBean
 public class PartService {
 
-    @Inject
-    private PartDAO partDAO;
+    private static PartDAO partDAO = new PartDAOImpl();
 
 
     public List<Part> findAll() throws AppException {
