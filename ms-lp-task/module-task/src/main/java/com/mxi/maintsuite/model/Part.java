@@ -21,7 +21,7 @@ import java.util.Date;
 
 
 @Entity
-@Table(name = "LP_PART")
+@Table(name = "LINE_PLANNING.LP_PART")
 @NamedQueries({
         @NamedQuery(name = "Part.findAll", query = "SELECT p FROM Part p"),
         @NamedQuery(name = "Part.getById", query = "SELECT p FROM Part p WHERE p.id=:id"),
@@ -32,6 +32,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class Part implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,18 +65,23 @@ public class Part implements Serializable {
     private String status;
 
 
-    @Column(name = "LPTT_QUANTITY")
+    @Column(name = "LPPT_QUANTITY")
     @NotNull
     @ApiModelProperty(value = "Quantity required of the part", required = true)
     private Double quantity;
 
-    @Column(name = "LPTT_DATE_ETA")
+    @Column(name = "LPPT_DATE_ETA")
     @NotNull
     @ApiModelProperty(value = "Date estimated arrival of part (ETA)")
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm:ss")
     private Date estimatedArrival;
+
+    @Column(name = "LPPT_NAME")
+    @NotNull
+    @ApiModelProperty(value = "Name of a task in the product Line Planning", required = true)
+    private String name;
 
 
 }

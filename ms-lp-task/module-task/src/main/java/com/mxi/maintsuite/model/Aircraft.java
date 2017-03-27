@@ -9,6 +9,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
@@ -16,7 +17,7 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "LP_AIRCRAFT")
+@Table(name = "LINE_PLANNING.LP_AIRCRAFT")
 @NamedQueries({@NamedQuery(name = "Aircraft.findAll", query = "SELECT a FROM Aircraft a"),
         @NamedQuery(name = "Aircraft.getById", query = "SELECT a FROM Aircraft a WHERE upper(a.tail)=upper(trim(:tail))")
 
@@ -24,6 +25,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class Aircraft implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -49,9 +51,12 @@ public class Aircraft implements Serializable {
     private String authority;
 
 
-    @Transient
+    @NotNull
+    @Column(name = "LPAC_OPERATOR_CD")
     @JsonProperty("operator")
-    @ApiModelProperty(value = "Identifier for operator /PENDIENTE CREACION EN BD")
+    @ApiModelProperty(value = "Identifier for operator")
     private String operator;
+
+
 
 }

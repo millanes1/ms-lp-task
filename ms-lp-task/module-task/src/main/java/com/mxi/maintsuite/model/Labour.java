@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "LP_LABOUR")
+@Table(name = "LINE_PLANNING.LP_LABOUR")
 @NamedQueries({
         @NamedQuery(name = "Labour.findAll", query = "SELECT l FROM Labour l"),
         @NamedQuery(name = "Labour.getById", query = "SELECT l FROM Labour l WHERE l.id=:id"),
@@ -30,6 +30,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class Labour implements Serializable {
 
     private static final long serialVersionUID = 1L;

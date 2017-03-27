@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "LP_TASK")
+@Table(name = "LINE_PLANNING.LP_TASK")
 @NamedQueries({@NamedQuery(name = "Task.findAll", query = "SELECT t FROM Task t ORDER BY t.id asc "),
         @NamedQuery(name = "Task.getById", query = "SELECT t FROM Task t WHERE t.id=:id"),
         @NamedQuery(name = "Task.getByBarcode", query = "SELECT t FROM Task t WHERE upper(t.barcode)=upper(trim(:barcode))"),
@@ -31,6 +31,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class Task implements Serializable {
     @Transient
     private static final long serialVersionUID = 1L;

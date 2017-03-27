@@ -19,7 +19,7 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "LP_TOOL")
+@Table(name = "LINE_PLANNING.LP_TOOL")
 @NamedQueries({
         @NamedQuery(name = "Tool.findAll", query = "SELECT t FROM Tool t"),
         @NamedQuery(name = "Tool.getById", query = "SELECT t FROM Tool t WHERE t.id=:id"),
@@ -30,6 +30,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class Tool implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -14,11 +14,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @author Arun Gupta
- */
+
 @Entity
-@Table(name = "LP_WORK_PACKAGE")
+@Table(name = "LINE_PLANNING.LP_WORK_PACKAGE")
 @NamedQueries({
         @NamedQuery(name = "WorkPackage.findAll", query = "SELECT w FROM WorkPackage w"),
         @NamedQuery(name = "WorkPackage.getByBarcode", query = "SELECT w FROM WorkPackage w WHERE upper(w.barcode)=trim(upper(:barcode))")
@@ -28,6 +26,7 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
+@XmlRootElement
 public class WorkPackage implements Serializable {
     @Transient
     private static final long serialVersionUID = 1L;
