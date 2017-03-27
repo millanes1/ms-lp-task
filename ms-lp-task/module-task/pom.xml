@@ -43,7 +43,14 @@
             </plugin>
         </plugins>
     </build>
-
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <postgres.version>9.4.1212</postgres.version>
+        <logback.version>1.2.1</logback.version>
+        <lombok.version>1.16.8</lombok.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -69,7 +76,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.4.1212</version>
+            <version>${postgres.version}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger</groupId>
@@ -117,8 +124,14 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
         </dependency>
     </dependencies>
 </project>
