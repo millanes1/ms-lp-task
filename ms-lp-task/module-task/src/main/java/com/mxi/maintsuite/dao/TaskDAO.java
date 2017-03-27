@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.persistence;
+package com.mxi.maintsuite.dao;
 
 import com.mxi.maintsuite.PersistenceHelper;
 import com.mxi.maintsuite.to.Task;

@@ -2,7 +2,7 @@ package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Tool;
-import com.mxi.maintsuite.persistence.ToolDAO;
+import com.mxi.maintsuite.dao.ToolDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

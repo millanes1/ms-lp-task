@@ -1,12 +1,12 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.dao.AircraftDAO;
+import com.mxi.maintsuite.dao.AircraftDAOImpl;
 import com.mxi.maintsuite.rest.errorhandling.AppException;
-import com.mxi.maintsuite.persistence.AircraftDAO;
 import com.mxi.maintsuite.to.Aircraft;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -16,8 +16,8 @@ import java.util.List;
 @LocalBean
 public class AircraftService {
 
-    @Inject
-    private AircraftDAO aircraftDAO;
+
+    private static AircraftDAO aircraftDAO = new AircraftDAOImpl();
 
 
     public List<Aircraft> findAll() throws AppException {
@@ -26,7 +26,7 @@ public class AircraftService {
 
     }
 
-    public Aircraft get(String tail) throws AppException {
+    public Aircraft get(final String tail) throws AppException {
 
         return aircraftDAO.get(tail);
     }

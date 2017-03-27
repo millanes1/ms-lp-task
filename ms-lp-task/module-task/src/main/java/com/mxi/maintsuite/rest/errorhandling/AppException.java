@@ -1,8 +1,15 @@
 package com.mxi.maintsuite.rest.errorhandling;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
  * Created by millanes on 23-03-17.
  */
+@Getter
+@Setter
+@ToString
 public class AppException extends Exception {
 
     private static final long serialVersionUID = -8999932578270387947L;
@@ -47,35 +54,5 @@ public class AppException extends Exception {
     public AppException() {
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
-
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 }

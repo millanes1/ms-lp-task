@@ -4,6 +4,9 @@ package com.mxi.maintsuite.rest.errorhandling;
  * Created by millanes on 23-03-17.
  */
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.apache.commons.beanutils.BeanUtils;
 
 import javax.ws.rs.NotFoundException;
@@ -12,7 +15,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.lang.reflect.InvocationTargetException;
 
-
+@Getter
+@Setter
+@ToString
 @XmlRootElement
 public class ErrorMessage {
 
@@ -46,55 +51,16 @@ public class ErrorMessage {
     @XmlElement(name = "developerMessage")
     String developerMessage;
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
-
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
 
     public ErrorMessage(AppException ex) {
         try {
             BeanUtils.copyProperties(this, ex);
         } catch (IllegalAccessException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+          //  e.printStackTrace();
         } catch (InvocationTargetException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+         //   e.printStackTrace();
         }
     }
 

@@ -2,7 +2,7 @@ package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Part;
-import com.mxi.maintsuite.persistence.PartDAO;
+import com.mxi.maintsuite.dao.PartDAO;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
