@@ -1,7 +1,7 @@
-package com.mxi.maintsuite.resource;
+package com.mxi.maintsuite.rest.resource;
 
 
-import com.mxi.maintsuite.errorhandling.AppException;
+import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Task;
 import com.mxi.maintsuite.services.TaskService;
 import io.swagger.annotations.*;
@@ -10,6 +10,8 @@ import javax.ejb.EJB;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import static com.mxi.maintsuite.rest.filter.AppConstants.*;
 
 
 @Path("/tasks")
@@ -21,16 +23,6 @@ public class TaskResource {
     @EJB
     private
     TaskService taskService;
-
-
-    private static final String MESSAGE_200 = "Success";
-    private static final String MESSAGE_400 = "The request was invalid or cannot be otherwise served.";
-    private static final String MESSAGE_401 = "Authentication credentials were missing or incorrect.";
-    private static final String MESSAGE_403 = "The request is understood, but it has been refused or access is not allowed.";
-    private static final String MESSAGE_404 = "The URI requested is invalid or the resource requested does not exists.";
-    private static final String MESSAGE_429 = "The request cannot be served due to the application’s rate limit having been exhausted for the resource.";
-    private static final String MESSAGE_503 = "The server is up, but overloaded with requests. Try again later.";
-    private static final String MESSAGE_500 = "Something is broken";
 
 
     @GET

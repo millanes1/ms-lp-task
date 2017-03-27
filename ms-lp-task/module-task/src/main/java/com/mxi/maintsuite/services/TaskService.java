@@ -1,9 +1,8 @@
 package com.mxi.maintsuite.services;
 
-import com.mxi.maintsuite.errorhandling.AppException;
+import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Task;
 import com.mxi.maintsuite.persistence.TaskDAO;
-import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;

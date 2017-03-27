@@ -1,7 +1,7 @@
-package com.mxi.maintsuite.errorhandling;
+package com.mxi.maintsuite.rest.errorhandling;
 
 
-import com.mxi.maintsuite.filter.AppConstants;
+import com.mxi.maintsuite.rest.filter.AppConstants;
 
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;

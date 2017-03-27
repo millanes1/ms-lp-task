@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.errorhandling;
+package com.mxi.maintsuite.rest.errorhandling;
 
 /**
  * Created by millanes on 23-03-17.

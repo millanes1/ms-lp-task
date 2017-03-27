@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.errorhandling;
+package com.mxi.maintsuite.rest.errorhandling;
 
 
 import javax.ws.rs.core.MediaType;

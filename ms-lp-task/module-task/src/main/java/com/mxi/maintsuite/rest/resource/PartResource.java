@@ -1,7 +1,7 @@
-package com.mxi.maintsuite.resource;
+package com.mxi.maintsuite.rest.resource;
 
 
-import com.mxi.maintsuite.errorhandling.AppException;
+import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Part;
 import com.mxi.maintsuite.services.PartService;
 import io.swagger.annotations.Api;
