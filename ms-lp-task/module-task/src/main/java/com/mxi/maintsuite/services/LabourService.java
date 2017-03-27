@@ -1,8 +1,9 @@
 package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.errorhandling.AppException;
-import com.mxi.maintsuite.model.Labour;
+import com.mxi.maintsuite.to.Labour;
 import com.mxi.maintsuite.persistence.LabourDAO;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

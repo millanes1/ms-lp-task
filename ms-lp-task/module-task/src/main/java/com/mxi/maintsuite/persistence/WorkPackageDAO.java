@@ -1,8 +1,7 @@
 package com.mxi.maintsuite.persistence;
 
 import com.mxi.maintsuite.PersistenceHelper;
-import com.mxi.maintsuite.model.Tool;
-import com.mxi.maintsuite.model.WorkPackage;
+import com.mxi.maintsuite.to.WorkPackage;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

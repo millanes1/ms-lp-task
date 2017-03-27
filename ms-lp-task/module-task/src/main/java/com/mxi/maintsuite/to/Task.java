@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.model;
+package com.mxi.maintsuite.to;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonRootName;

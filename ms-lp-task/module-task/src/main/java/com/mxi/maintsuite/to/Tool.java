@@ -1,4 +1,4 @@
-package com.mxi.maintsuite.model;
+package com.mxi.maintsuite.to;
 
 /**
  * Created by millanes on 20-03-17.

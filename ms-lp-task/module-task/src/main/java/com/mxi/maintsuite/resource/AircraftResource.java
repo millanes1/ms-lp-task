@@ -2,7 +2,7 @@ package com.mxi.maintsuite.resource;
 
 
 import com.mxi.maintsuite.errorhandling.AppException;
-import com.mxi.maintsuite.model.Aircraft;
+import com.mxi.maintsuite.to.Aircraft;
 import com.mxi.maintsuite.services.AircraftService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

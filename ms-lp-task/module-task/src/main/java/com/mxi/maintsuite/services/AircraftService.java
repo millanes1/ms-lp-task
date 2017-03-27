@@ -1,10 +1,9 @@
 package com.mxi.maintsuite.services;
 
 import com.mxi.maintsuite.errorhandling.AppException;
-import com.mxi.maintsuite.model.Aircraft;
-import com.mxi.maintsuite.model.WorkPackage;
 import com.mxi.maintsuite.persistence.AircraftDAO;
-import com.mxi.maintsuite.persistence.WorkPackageDAO;
+import com.mxi.maintsuite.to.Aircraft;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;

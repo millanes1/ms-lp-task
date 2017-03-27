@@ -1,8 +1,7 @@
 package com.mxi.maintsuite.persistence;
 
 import com.mxi.maintsuite.PersistenceHelper;
-import com.mxi.maintsuite.model.Aircraft;
-import com.mxi.maintsuite.model.WorkPackage;
+import com.mxi.maintsuite.to.Aircraft;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

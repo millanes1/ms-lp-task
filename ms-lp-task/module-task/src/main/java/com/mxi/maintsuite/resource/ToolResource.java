@@ -2,7 +2,7 @@ package com.mxi.maintsuite.resource;
 
 
 import com.mxi.maintsuite.errorhandling.AppException;
-import com.mxi.maintsuite.model.Tool;
+import com.mxi.maintsuite.to.Tool;
 import com.mxi.maintsuite.services.ToolService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
