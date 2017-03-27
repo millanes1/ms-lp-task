@@ -1,53 +1,25 @@
 package com.mxi.maintsuite.dao;
 
-import com.mxi.maintsuite.PersistenceHelper;
 import com.mxi.maintsuite.to.Task;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import java.util.List;
 
 /**
  * Created by millanes on 20-03-17.
  */
 
-@ApplicationScoped
-public class TaskDAO {
+public interface TaskDAO {
 
-    @Inject
-    PersistenceHelper helper;
 
-    public Task get(Long id) {
+    Task get(final Long id);
 
-        return helper.getEntityManager().createNamedQuery("Task.getById", Task.class).setParameter("id", id).getSingleResult();
-    }
+    Task get(final String barcode);
 
-    public Task get(String barcode) {
+    List<Task> findAll();
 
-        return helper.getEntityManager().createNamedQuery("Task.getByBarcode", Task.class).setParameter("barcode", barcode).getSingleResult();
-    }
+    List<Task> findByPagination(Integer offset, Integer limit);
 
-    public List<Task> findAll() {
+    List<Task> findByWorkPackage(final String barcode);
 
-        final List<Task> taskList = helper.getEntityManager().createNamedQuery("Task.findAll", Task.class).getResultList();
-        return taskList;
-    }
-
-    public List<Task> findByPagination(Integer offset, Integer limit) {
-
-        offset = (offset != null && offset > 0) ? offset - 1 : offset;
-        final List<Task> taskList = helper.getEntityManager().createNamedQuery("Task.findAll", Task.class).setFirstResult(offset).setMaxResults(limit).getResultList();
-
-        return taskList;
-    }
-
-    public List<Task> findByWorkPackage(String barcode) {
-
-        return helper.getEntityManager().createNamedQuery("Task.findByWorkPackage", Task.class).setParameter("barcode", barcode).getResultList();
-    }
-
-    public List<Task> findByAircraft(String tail) {
-
-        return helper.getEntityManager().createNamedQuery("Task.findByAircraft", Task.class).setParameter("tail", tail).getResultList();
-    }
+    List<Task> findByAircraft(final String tail);
 }

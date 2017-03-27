@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Id;
+
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -28,7 +28,7 @@ public class Tool implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
+
     @NotNull
     @ApiModelProperty(value = "Identifier of a tool in the product Line Planning", required = true)
     private Long id;

@@ -16,7 +16,7 @@ import static com.mxi.maintsuite.rest.filter.AppConstants.*;
 
 @Path("/tasks")
 @Api(value = "/tasks", description = "Get tasks information")
-@Produces({"application/json", "application/xml"})
+@Produces("application/json")
 public class TaskResource {
 
 

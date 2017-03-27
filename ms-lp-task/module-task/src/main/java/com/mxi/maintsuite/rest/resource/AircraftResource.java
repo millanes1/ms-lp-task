@@ -16,7 +16,7 @@ import static com.mxi.maintsuite.rest.filter.AppConstants.*;
 
 @Path("/aircrafts")
 @Api(value = "/aircrafts", description = "Get aircrafts information")
-@Produces({"application/json", "application/xml"})
+@Produces("application/json")
 public class AircraftResource {
 
 

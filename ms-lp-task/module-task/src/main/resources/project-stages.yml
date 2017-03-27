@@ -1,8 +1,0 @@
-swarm:
-  ds:
-    name: DemoDS
-    username: postgres
-    password: test1234
-    connection:
-      url: jdbc:postgresql://postgresdb:5432/postgres
-

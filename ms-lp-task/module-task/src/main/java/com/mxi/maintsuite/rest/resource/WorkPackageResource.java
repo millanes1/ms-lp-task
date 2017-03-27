@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/workpackages")
 @Api(value = "/workpackages", description = "Get workpackage information", tags = "workpackages")
+@Produces("application/json")
 public class WorkPackageResource {
 
 

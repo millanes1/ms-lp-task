@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/labours")
 @Api(value = "/labours", description = "Get labours information", tags = "labours")
+@Produces("application/json")
 public class LabourResource {
 
     @EJB

@@ -15,6 +15,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/parts")
 @Api(value = "/parts", description = "Get parts information", tags = "parts")
+@Produces("application/json")
 public class PartResource {
 
     @EJB

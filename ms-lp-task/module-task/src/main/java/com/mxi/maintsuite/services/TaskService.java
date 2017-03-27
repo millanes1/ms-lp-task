@@ -1,5 +1,6 @@
 package com.mxi.maintsuite.services;
 
+import com.mxi.maintsuite.dao.TaskDAOImpl;
 import com.mxi.maintsuite.rest.errorhandling.AppException;
 import com.mxi.maintsuite.to.Task;
 import com.mxi.maintsuite.dao.TaskDAO;
@@ -7,7 +8,6 @@ import com.mxi.maintsuite.dao.TaskDAO;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import java.util.List;
 
 
@@ -17,8 +17,8 @@ import java.util.List;
 @Stateless
 @LocalBean
 public class TaskService {
-    @Inject
-    private TaskDAO taskDAO;
+
+    private static TaskDAO taskDAO=new TaskDAOImpl();
     @EJB
     private WorkPackageService workPackageService;
     @EJB
@@ -34,7 +34,6 @@ public class TaskService {
 
     public List<Task> findAll() throws AppException {
 
-
         List<Task> taskList = taskDAO.findAll();
         this.complete(taskList);
         return taskList;
@@ -43,22 +42,20 @@ public class TaskService {
 
     public List<Task> findByUser(String userMail, Integer offset, Integer limit) throws AppException {
 
-//                throw   new AppException(Response.Status.CONFLICT.getStatusCode(), 409, "Podcast with feed already existing in the database with the id " + -1,
-//                "Please verify that the feed and title are properly generated", AppConstants.BLOG_POST_URL);
         List<Task> taskList = taskDAO.findByPagination(offset, limit);
         this.complete(taskList);
         return taskList;
     }
 
 
-    public Task get(Long id) throws AppException {
+    public Task get(final Long id) throws AppException {
         Task task = taskDAO.get(id);
         this.complete(task);
         return task;
     }
 
 
-    public Task get(String barcode) throws AppException {
+    public Task get(final String barcode) throws AppException {
 
         Task task = taskDAO.get(barcode);
 
@@ -68,14 +65,14 @@ public class TaskService {
     }
 
 
-    public List<Task> findByAircraft(String tail) throws AppException {
+    public List<Task> findByAircraft(final String tail) throws AppException {
 
         List<Task> taskList = taskDAO.findByAircraft(tail);
         this.complete(taskList);
         return taskList;
     }
 
-    public List<Task> findByWorkPackage(String barcode) throws AppException {
+    public List<Task> findByWorkPackage(final String barcode) throws AppException {
 
         List<Task> taskList = taskDAO.findByWorkPackage(barcode);
         this.complete(taskList);

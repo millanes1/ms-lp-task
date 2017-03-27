@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -22,10 +22,9 @@ import java.util.Date;
 @ToString
 @XmlRootElement
 public class WorkPackage implements Serializable {
-    @Transient
+
     private static final long serialVersionUID = 1L;
 
-    @Id
     @NotNull
     @ApiModelProperty(value = "Visual identifier of a Work Package", required = true)
     private String barcode;
@@ -49,14 +48,12 @@ public class WorkPackage implements Serializable {
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm:ss")
-    @Column(name = "LPWP_DATE_TIME_START")
     @ApiModelProperty(value = "Date and time off works start")
     private Date beginDate;
 
     @JsonFormat(
             shape = JsonFormat.Shape.STRING,
             pattern = "yyyy-MM-dd hh:mm:ss")
-    @Column(name = "LPWP_DATE_TIME_END")
     @ApiModelProperty(value = "Date and time off works finish")
     private Date endDate;
 
