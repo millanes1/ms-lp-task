@@ -3,6 +3,7 @@ package com.mxi.maintsuite.dao;
 import com.mxi.maintsuite.to.Aircraft;
 import com.mxi.maintsuite.util.DatabaseUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,7 +19,7 @@ import java.util.List;
 @Slf4j
 public class AircraftDAOImpl implements AircraftDAO {
 
-    private static final String SQL = "SELECT LPAC_AC_REG_CD, LPAC_ASSMBL_CD, LPAC_AUTHORITY_CD, LPAC_OPERATOR_CD FROM LP_AIRCRAFT ";
+    private static final String SQL = "SELECT LPAC_AC_REG_CD, LPAC_ASSMBL_CD, LPAC_AUTHORITY_CD FROM LP_AIRCRAFT ";
 
     @Override
     public Aircraft get(final String tail) {
@@ -30,6 +31,18 @@ public class AircraftDAOImpl implements AircraftDAO {
     @Override
     public List<Aircraft> findAll() {
         return this.execute(SQL);
+    }
+
+    @Override
+    public List<Aircraft> filter(Aircraft filter) {
+        final StringBuffer query = new StringBuffer();
+        query.append(SQL);
+        query.append(" WHERE 1= 1");
+        query.append(StringUtils.isNotEmpty(filter.getTail()) ? " AND upper(trim(LPAC_AC_REG_CD))='" + filter.getTail().toUpperCase().trim() + "'" : "");
+        query.append(StringUtils.isNotEmpty(filter.getFleet()) ? " AND upper(trim(LPAC_ASSMBL_CD))='" + filter.getFleet().toUpperCase().trim() + "'" : "");
+        query.append(StringUtils.isNotEmpty(filter.getAuthority()) ? " AND upper(trim(LPAC_AUTHORITY_CD))='" + filter.getAuthority().toUpperCase().trim() + "'" : "");
+        return this.execute(query.toString());
+
     }
 
 
@@ -48,7 +61,7 @@ public class AircraftDAOImpl implements AircraftDAO {
                 aircraft.setTail(rs.getString(1));
                 aircraft.setFleet(rs.getString(2));
                 aircraft.setAuthority(rs.getString(3));
-                aircraft.setOperator(rs.getString(4));
+                //  aircraft.setOperator(rs.getString(4));
 
                 aircrafts.add(aircraft);
             }

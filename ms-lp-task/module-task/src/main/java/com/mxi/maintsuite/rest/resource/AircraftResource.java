@@ -43,9 +43,10 @@ public class AircraftResource {
             @ApiResponse(code = 500, message = MESSAGE_500, response = AppException.class),
             @ApiResponse(code = 503, message = MESSAGE_503, response = AppException.class)})
     public Response get() throws AppException {
+Aircraft filter=new Aircraft();
+filter.setFleet("Fleet1");
 
-
-        return Response.status(Response.Status.OK).entity(aircraftService.findAll()).build();
+        return Response.status(Response.Status.OK).entity(aircraftService.filter(filter)).build();
     }
 
     @GET

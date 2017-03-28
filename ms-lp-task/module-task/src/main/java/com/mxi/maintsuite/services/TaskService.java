@@ -89,10 +89,6 @@ public class TaskService {
 
 
     private void complete(Task task) throws AppException {
-        if (task == null || (task != null && task.getId() == null)) {
-            throw new AppException(Response.Status.NOT_FOUND.getStatusCode(), 404, MESSAGE_404,
-                    null, BLOG_POST_URL);
-        }
 
         task.setToolList(toolService.findByTask(task.getId()));
         task.setWorkPackage(workPackageService.get(task.getBarcodeWP()));
@@ -103,12 +99,6 @@ public class TaskService {
     }
 
     private void complete(List<Task> taskList) throws AppException {
-        if (taskList == null || (taskList != null && taskList.isEmpty())) {
-
-            throw new AppException(Response.Status.NOT_FOUND.getStatusCode(), 404, MESSAGE_404,
-                    null, BLOG_POST_URL);
-
-        }
 
         for (Task item : taskList) {
             this.complete(item);

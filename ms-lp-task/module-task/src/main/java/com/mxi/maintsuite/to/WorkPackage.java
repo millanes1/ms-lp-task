@@ -46,14 +46,12 @@ public class WorkPackage implements Serializable {
 
 
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     @ApiModelProperty(value = "Date and time off works start")
     private Date beginDate;
 
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     @ApiModelProperty(value = "Date and time off works finish")
     private Date endDate;
 

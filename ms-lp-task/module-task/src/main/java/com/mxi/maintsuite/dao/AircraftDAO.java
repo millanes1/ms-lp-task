@@ -14,4 +14,6 @@ public interface AircraftDAO {
     Aircraft get(final String tail);
 
     List<Aircraft> findAll();
+
+    List<Aircraft> filter(final Aircraft filter);
 }

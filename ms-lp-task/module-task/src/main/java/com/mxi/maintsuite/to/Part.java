@@ -62,8 +62,7 @@ public class Part implements Serializable {
     @NotNull
     @ApiModelProperty(value = "Date estimated arrival of part (ETA)")
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     private Date estimatedArrival;
 
 

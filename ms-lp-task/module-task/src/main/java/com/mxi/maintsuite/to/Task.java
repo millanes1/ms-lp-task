@@ -68,22 +68,19 @@ public class Task implements Serializable {
     @NotNull
     @ApiModelProperty(value = "Date of defined limit for execution of task", required = true)
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     private Date dueDate;
 
 
     @ApiModelProperty(value = "Date extended of defined limit for execution of task")
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     private Date dueDateExtended;
 
 
     @ApiModelProperty(value = "Date of defined limit for execution of task, attribute for product Line Planning", required = true)
     @JsonFormat(
-            shape = JsonFormat.Shape.STRING,
-            pattern = "yyyy-MM-dd hh:mm:ss")
+            pattern = "dd-MMM-yyyy hh:mm")
     private Date dueDateLimit;
 
 
